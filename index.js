@@ -11,7 +11,7 @@ var http = require('http');
 var url = require('url');
 var client = [];
 var server = new http.Server();
-server.listen(3000,'127.0.0.1');
+server.listen(3000,()=>console.log('сервер работает'));
 event.on('ok',function(){
 	server.on('request',function(reg,res){
 	    var name = url.parse(reg.url,true).pathname;
