@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		 .fon {
+			background-color:#949494;
+		}
+    .fon1{
+    	background: #EDEDED;
+    }
+	.link{
+		text-decoration: none;
+		padding:15px;
+		margin:3px;
+		display: block;
+		float:left;
+		font-size:18px;
+		
+		color:#7476ED;
+	}
+	.menu{
+		height:70px;
+	}
+	#wrapper{
+     perspective:2000px;
+     width:1500px;
+     height: 500px;
+	}
+	#cube{
+		position: relative;
+		width:1500px;
+		height: 500px;
+	    transform-origin: 50% 50% -750px;
+	    transform-style: preserve-3d;
+	    transform: rotateX(0deg) rotateY(-90deg);	
+	}
+		.side{
+			width:1500px;
+			height:500px;
+			background:rgba(0,0,0,.3);
+			position: absolute;
+			border:10px solid #fff;
+			border-radius: 10px;
+			font-size:5em;
+			color:#fff;
+			line-height: 300px;
+			text-align: center;
+			text-shadow: 0 1px 3px rgba(0,0,0,.4);
+			box-shadow: 0 0 6px rgba(0,0,0,.5);
+            transform-origin: 50% 50% -750px;
+		}
+		#side2{
+			transform: rotateY(90deg);
+		}
+			#side3{
+			transform: rotateY(-90deg);
+		}
+			#side4{
+			transform: rotateX(90deg);
+		}
+			#side5{
+			transform: rotateX(-90deg);
+		}
+			#side6{
+			transform: rotateY(180deg);
+		}
+	
+	</style>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+
+
+<div id="wrapper">
+	<div id='cube'>
+		<div class='side' id='side1'>1</div>
+		<div class='side' id='side2'>2</div>
+		<div class='side' id='side3'>3</div>
+		<div class='side' id='side6'>6</div>
+	</div>
+</div>
+<script type="text/javascript">
+if(window.location.pathname=='/'){
+	menu($('[href=m1]')[0]);
+}else{
+	menu($('[href=m1]')[0]);
+};
+   function lox(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST","/lol",true);
+	xhr.send(chat.value);
+    xhr.onreadystatechange = function(){
+    	if(xhr.readyState == 4){
+    		if(xhr.status == 200){
+    			message.innerHTML = message.innerHTML +'<br>'+ xhr.responseText;
+    		}
+    	}
+    }
+   }
+
+
+  $('.link').on('click',function(e){
+    e.preventDefault();
+
+ 
+    menu(this)
+    history.pushState(e.target.getAttribute('href'),'',e.target.getAttribute('href'))
+   // h.innerHTML = e.target.getAttribute('href');  
+  });
+// window.popstate = function(e){
+//    h.innerHTML = e;
+//    alert('ghbdtn')
+// } 
+var fon;
+var urlmas = {'m1':0,'m2':1,'m3':2}
+function menu(e){
+ if(fon!=undefined){
+    	   	if(urlmas[$(e).attr('href')]>urlmas[$(fon).attr('href')]){
+		rotate('r')
+	}else if(urlmas[$(e).attr('href')]<urlmas[$(fon).attr('href')]){
+		rotate('l')
+	}
+    }
+	if(fon!=undefined){
+       $(fon).removeClass('fon');
+       $(fon).addClass('fon1');
+	}
+  $(e).removeClass('fon1');	
+  $(e).addClass('fon');
+  fon = e;
+}
+window.addEventListener('popstate',function(e){
+	 menu($('[href='+e.state+']')[0]);
+})
+function rotate(e){
+	var count = 0;
+	var t = 0;
+
+	var start = setInterval(function(){
+			if(e=='l'){
+		count++;
+	}else{count--;}
+	t++;
+	$('#cube').css({'transform':'rotateX(0deg) rotateY('+count+'deg)'});
+	if(t==90){
+      clearInterval(start);
+      return;
+	}
+	
+    },10);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+ (window.onresize = function(){
+ 	var a = 15;
+ 	var b = 200;
+	$('.side').css({
+        width:document.documentElement.clientWidth+'px',
+        height: document.documentElement.clientHeight-b+'px',
+        'transform-origin': '50% 50% -'+(document.documentElement.clientWidth)/2+'px'
+	})
+	$('#wrapper').css({
+        width:document.documentElement.clientWidth+'px',
+        height: document.documentElement.clientHeight-b+'px',
+	})
+	$('#cube').css({
+        width:document.documentElement.clientWidth+'px',
+        height: document.documentElement.clientHeight-b+'px',
+        'transform-origin': '50% 50% -'+(document.documentElement.clientWidth)/2+'px'
+	})
+ })();	
+</script>
+<div class="menu">
+<a href="" class='link fon1' count='m1' >наши работы</a>
+<a href="m2" class='link fon1' count='m2' >цена</a>
+<a href="m3" class='link fon1' count='m3' >наш персонал</a>
+</div>
+<div id="wrapper">
+	<div id='cube'>
+		<div class='side' id='side1'></div>
+		<div class='side' id='side2'>
+		
