@@ -1,11 +1,6 @@
  var EventEmitter = require('events').EventEmitter;
  var event = new EventEmitter;
 
-
-// server.on('requst',function(requst){
-// 	console.log(requst);
-// });
-// event.emit('request','привет');
 var fs = require('fs');
 var http = require('http');
 var url = require('url');
